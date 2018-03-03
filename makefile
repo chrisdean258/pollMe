@@ -9,4 +9,8 @@ nc:
 run:
 	docker kill pm || true 2>/dev/null
 	docker rm pm || true 2>/dev/null
-	docker run --name pm -p 80:5000 pollme:latest
+	docker run --name pm -d -p 80:5000 pollme:latest
+
+.PHONY:runlocal
+runlocal:
+	sh run_app.sh
