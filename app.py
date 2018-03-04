@@ -23,9 +23,13 @@ def question(roomID):
 def answer(roomID, pollID):
     return 'answer to poll number %s in room number %s' % (pollID, roomID)
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return 'register'
+    if request.method== 'POST':
+        return 'hey good job you tried to log in'
+    else:
+        return render_template("register.html")
+        #return 'register'
 
 @app.route('/receive_text', methods=['POST'])
 def receive_text():
