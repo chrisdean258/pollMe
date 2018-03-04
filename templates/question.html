@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <title>PollMe</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="/register.css">
+    <script>
+roomID = {{roomID}};
+num = 0;
+ajax = function()
+{
+  $.ajax(
+      {
+        url:"/questions/"+roomID,
+        success: function(result)
+        {
+          obj = JSON.parse(result);
+          for(let i = num; i < obj.length; i++)
+          {
+            document.getElementById("questionTable").innerHTML += "<tr><td>" + obj[i] + "</td></tr>";
+          }
+          num = obj.length;
+        }
+      });
+}
+setInterval(ajax, 3000);
+    </script>
+  </head>
+
+  <body>
+    <!--multistep form -->
+    <table id="questionTable">
+    </table>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script>ajax();</script>
+  </body>
+
+</html>
+
+

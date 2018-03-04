@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from python.questionInsert import askQuestion
 from python.questionInsert import getQuestionsRoom
+import json
 app = Flask(__name__)
 
 @app.route('/')
@@ -15,8 +16,9 @@ def addclass():
 
 @app.route('/questions/<roomID>')
 def get_questions(roomID):
-    questions = getQuestionsRoom(roomID)
-    return ("", 204)
+    questions = [q[5] for q in getQuestionsRoom(roomID)]
+
+    return json.dumps(questions)
 
 @app.route('/room/<roomID>')
 def room(roomID):
@@ -32,7 +34,7 @@ def pollID(roomID, pollID):
 
 @app.route('/<roomID>/question')
 def question(roomID):
-    return 'question in room number %s' % roomID
+    return render_template("question.html", roomID=roomID)
 
 @app.route('/<roomID>/poll/<pollID>/answer')
 def answer(roomID, pollID):

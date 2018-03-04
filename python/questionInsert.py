@@ -41,7 +41,7 @@ def getQuestionsRoom(roomCode):
 
 def main():
 	#roomCode="123456"
-	#getQuestionsRoom(roomCode)	
+	#getQuestionsRoom(roomCode)
 	pass
 	#phoneNumber = "8970987890"
 	#roomCode = "testCode"
