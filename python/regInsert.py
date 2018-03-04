@@ -6,20 +6,6 @@ import random
 import datetime
 import textMessage
 
-
-
-# prepare a cursor object using cursor() method
-
-#Kelsey
-	#Phone Number
-	#Full Name
-
-#Gen Code
-
-#Insert into mysql
-
-#Text code to Phone Number
-
 def fromPage(phoneNumber, fullName):
 	db = dbconn.dbcon()
 
@@ -55,6 +41,7 @@ def fromPage(phoneNumber, fullName):
 		db.rollback()
 
 	db.close()	
+	return None
 	
 def fromCode(phoneNumber, verCode):
 	db = dbconn.dbcon()
@@ -77,15 +64,15 @@ def fromCode(phoneNumber, verCode):
 		db.rollback()
 	
 	db.close()
+	return None
 
 def main():
-	phoneNumber = "8654940446"#"9319790204"
-	fullName = "Chris Dean"
-	verCode = '371C7A'
+	#phoneNumber = "TESTNUMBER HERE"
+	#fullName = "TESTNAME"
+	#verCode = "TESTVERCODE"
 
 	#fromCode(phoneNumber, verCode)
-
-	fromPage(phoneNumber, fullName)
+	#fromPage(phoneNumber, fullName)
 
 if __name__ == "__main__":
     main()
