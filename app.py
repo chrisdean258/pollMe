@@ -30,7 +30,7 @@ def register():
 @app.route('/receive_text', methods=['POST'])
 def receive_text():
     with open("log", "w") as f:
-        f.write(request.values)
+        f.write(str(request.values))
     return ('', 204)
 
 if __name__ == '__main__':
