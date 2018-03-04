@@ -7,19 +7,19 @@ def index():
     return render_template("index.html")
 
 @app.route('/<roomID>/poll')
-def poll():
+def poll(roomID):
     return 'poll in room number %d' % roomID
 
 @app.route('/<roomID>/poll/<pollID>')
-def pollID():
+def pollID(roomID, pollID):
     return 'poll in room number %d and poll number %d' % (roomID, pollID)
 
 @app.route('/<roomID>/question')
-def question():
+def question(roomID):
     return 'question in room number %d' % roomID
 
 @app.route('/<roomID>/poll/<pollID>/answer')
-def answer():
+def answer(roomID, pollID):
     return 'answer to poll number %d in room number %d' % (pollID, roomID)
 
 @app.route('/register')
