@@ -33,16 +33,19 @@ def room(roomID):
 
 @app.route('/<roomID>/poll')
 def poll(roomID):
-    q = json.loads(getQuestion(roomID)[0][0])
+    try:
+        q = json.loads(getQuestion(roomID)[0][0])
 
-    print(q)
-    return render_template("poll.html",
-            a = q["answerA"],
-            b = q["answerB"],
-            c = q["answerC"],
-            d = q["answerD"],
-            question = q["pollquestion"]
-    )
+        print(q)
+        return render_template("poll.html",
+                a = q["answerA"],
+                b = q["answerB"],
+                c = q["answerC"],
+                d = q["answerD"],
+                question = q["pollquestion"]
+        )
+    except:
+        return render_template("poll.html", a = "", b = "", c = "", d = "", question = "")
 
 @app.route('/<roomID>/poll/<pollID>')
 def pollID(roomID, pollID):
