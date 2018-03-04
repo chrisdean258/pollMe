@@ -12,7 +12,7 @@ def fromPage(phoneNumber, fullName):
 	tempTime = datetime.datetime.now()
 	curDate = tempTime.strftime("%Y-%m-%d")
 	curTime = tempTime.strftime("%H:%M:%S")
-	
+
 	cursor = db.cursor()
 	cursor2 = db.cursor()
 
@@ -30,7 +30,7 @@ def fromPage(phoneNumber, fullName):
 		return "Error phone number already registered"
 
 	sql = """INSERT INTO reg(name, phoneNumber, regDate, regTime, regCode, regConf, classes) VALUES ('"""+ fullName  +"""', '""" + phoneNumber  +"""', '""" + curDate  +"""', '"""+ curTime  +"""', '"""+ genCode +"""', 'n', 'utk102')"""
-	
+
 	try:
 		cursor.execute(sql)
 		db.commit()
@@ -40,16 +40,17 @@ def fromPage(phoneNumber, fullName):
 	except:
 		db.rollback()
 
-	db.close()	
+	db.close()
 	return None
-	
+
+
 def fromCode(phoneNumber, verCode):
 	db = dbconn.dbcon()
 
 	tempTime = datetime.datetime.now()
 	curDate = tempTime.strftime("%Y-%m-%d")
 	curTime = tempTime.strftime("%H:%M:%S")
-	
+
 	cursor = db.cursor()
 
 	phoneNumber = phoneNumber
@@ -62,7 +63,7 @@ def fromCode(phoneNumber, verCode):
 		db.commit()
 	except:
 		db.rollback()
-	
+
 	db.close()
 	return None
 

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from python.questionInsert import askQuestion
 app = Flask(__name__)
 
 @app.route('/')
@@ -39,7 +40,13 @@ def register():
 def receive_text():
     phoneNum = request.form['From']
     msg = request.form['Body']
-    return ('', 204)
+    if len(msg) == 9:
+        # Is an answer to a question
+        pass
+    else:
+        askQuestion(phoneNum, msg[1:7], msg[8:])
+
+        return ('', 204)
 
 @app.route('/<filename>')
 def static_(filename):
