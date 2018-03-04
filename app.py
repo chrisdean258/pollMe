@@ -12,10 +12,6 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/addclass')
-def addclass():
-    return render_template("addclass.html")
-
 @app.route('/questions/<roomID>')
 def get_questions(roomID):
     questions = [q[5] for q in getQuestionsRoom(roomID)]
@@ -53,7 +49,6 @@ def register():
         return 'hey good job you tried to log in'
     else:
         return render_template("register.html")
-        #return 'register'
 
 @app.route('/receive_text', methods=['POST'])
 def receive_text():
@@ -69,6 +64,12 @@ def receive_text():
 def static_(filename):
     return app.send_static_file(filename)
 
+@app.route('/addclass', methods=['POST', 'GET'])
+def addclass():
+    if request.method == 'POST':
+        return "wrong one"
+    else:
+        return render_template("addclass.html")
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
