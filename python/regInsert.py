@@ -4,6 +4,7 @@ import pymysql as PyMySQL
 import dbconn
 import random
 import datetime
+import textMessage
 
 db = dbconn.dbcon()
 
@@ -29,21 +30,22 @@ def fromPage(phoneNumber, fullName):
 	fullName = fullName
 	genCode = ''.join(random.choice('0123456789ABCDEF') for i in range(6))
 
-	print(genCode)
-
 	sql = """INSERT INTO reg(name, phoneNumber, regDate, regTime, regCode, regConf, classes) VALUES ('"""+ fullName  +"""', '""" + phoneNumber  +"""', '""" + curDate  +"""', '"""+ curTime  +"""', '"""+ genCode +"""', 'n', 'utk102')"""
 	
 	try:
 		cursor.execute(sql)
 		db.commit()
+		phoneNumber = "+1" + phoneNumber
+		genCode = genCode + " is your PollMe verification code."
+		textMessage.send_text(phoneNumber, genCode)
 	except:
 		db.rollback()
 
 	db.close()	
 		
 def main():
-	phoneNumber = "0001111234"
-	fullName = "Test Name"
+	phoneNumber = "9319790204"
+	fullName = "Chris Dean"
 
 	fromPage(phoneNumber, fullName)
 
