@@ -39,6 +39,7 @@ def fromPage(phoneNumber, fullName):
 		textMessage.send_text(phoneNumber, genCode)
 	except:
 		db.rollback()
+		return "Error with insert"
 
 	db.close()
 	return None
@@ -63,6 +64,7 @@ def fromCode(phoneNumber, verCode):
 		db.commit()
 	except:
 		db.rollback()
+		return "Error with insert"
 
 	db.close()
 	return None

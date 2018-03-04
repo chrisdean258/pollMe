@@ -20,7 +20,6 @@ def askQuestion(phoneNumber, roomCode, message):
 	try:
 		cursor.execute(sql)
 		db.commit()
-		return "Insert was fine"
 	except:
 		db.rollback()
 		return "Insert had an error"
