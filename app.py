@@ -9,7 +9,7 @@ def index():
 
 @app.route('/room/<roomID>')
 def room(roomID):
-    return 'room number %s' % roomID
+    return render_template("room.html", roomID=roomID)
 
 @app.route('/<roomID>/poll')
 def poll(roomID):

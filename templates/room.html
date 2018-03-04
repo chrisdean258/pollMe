@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Room {{roomID}}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="/register.css">
+    <script>
+function goToPool()
+{
+  let roomID = {{roomID}};
+  window.location.href = "/" + roomID + "/poll";
+}
+    </script>
+  </head>
+
+  <body>
+    <!--multistep form -->
+    <input value="Poll" type="submit" name="Enter Room" class="submit action-button" onclick="goToPool();"/>
+    <input value="Questions" type="submit" name="register" class="submit action-button" onclick="window.location.href = '/'+{{roomID}}+'/question'" />
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+  </body>
+
+</html>
+
+
