@@ -6,14 +6,9 @@ import random
 import datetime
 import textMessage
 
-db = dbconn.dbcon()
 
-tempTime = datetime.datetime.now()
-curDate = tempTime.strftime("%Y-%m-%d")
-curTime = tempTime.strftime("%H:%M:%S")
 
 # prepare a cursor object using cursor() method
-cursor = db.cursor()
 
 #Kelsey
 	#Phone Number
@@ -26,9 +21,27 @@ cursor = db.cursor()
 #Text code to Phone Number
 
 def fromPage(phoneNumber, fullName):
+	db = dbconn.dbcon()
+
+	tempTime = datetime.datetime.now()
+	curDate = tempTime.strftime("%Y-%m-%d")
+	curTime = tempTime.strftime("%H:%M:%S")
+	
+	cursor = db.cursor()
+	cursor2 = db.cursor()
+
 	phoneNumber = phoneNumber
 	fullName = fullName
 	genCode = ''.join(random.choice('0123456789ABCDEF') for i in range(6))
+
+	sqlCheck = """SELECT COUNT(id) FROM reg WHERE phoneNumber='"""+ phoneNumber  +"""'"""
+	cursor2.execute(sqlCheck)
+	numCheck = cursor2.fetchall()
+	for row in numCheck:
+		numStuff = row[0]
+
+	if numStuff > 1:
+		return "Error phone number already registered"
 
 	sql = """INSERT INTO reg(name, phoneNumber, regDate, regTime, regCode, regConf, classes) VALUES ('"""+ fullName  +"""', '""" + phoneNumber  +"""', '""" + curDate  +"""', '"""+ curTime  +"""', '"""+ genCode +"""', 'n', 'utk102')"""
 	
@@ -42,10 +55,35 @@ def fromPage(phoneNumber, fullName):
 		db.rollback()
 
 	db.close()	
-		
+	
+def fromCode(phoneNumber, verCode):
+	db = dbconn.dbcon()
+
+	tempTime = datetime.datetime.now()
+	curDate = tempTime.strftime("%Y-%m-%d")
+	curTime = tempTime.strftime("%H:%M:%S")
+	
+	cursor = db.cursor()
+
+	phoneNumber = phoneNumber
+	verCode = verCode
+
+	sql = """UPDATE reg SET regConf='y' WHERE phoneNumber='"""+ phoneNumber +"""' AND regCode='"""+ verCode +"""'"""
+
+	try:
+		cursor.execute(sql)
+		db.commit()
+	except:
+		db.rollback()
+	
+	db.close()
+
 def main():
-	phoneNumber = "9319790204"
+	phoneNumber = "8654940446"#"9319790204"
 	fullName = "Chris Dean"
+	verCode = '371C7A'
+
+	#fromCode(phoneNumber, verCode)
 
 	fromPage(phoneNumber, fullName)
 
