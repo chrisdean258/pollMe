@@ -14,7 +14,7 @@ def createRoom(question):
 	cursor = db.cursor()
 	genCode = ''.join(random.choice('0123456789ABCDEF') for i in range(6))
 
-	sql = """INSERT INTO ans(roomId, classId, userCreated, roomDate, roomTime, question) VALUES ('"""+genCode+"""','N/A','N/A','"""+curDate+"""','"""+curTime+"""','"""+question+"""')"""
+	sql = """INSERT INTO rooms(roomId, classId, userCreated, roomDate, roomTime, question) VALUES ('"""+genCode+"""','N/A','N/A','"""+curDate+"""','"""+curTime+"""','"""+question+"""')"""
 	try:
 		cursor.execute(sql)
 		db.commit()
@@ -25,9 +25,21 @@ def createRoom(question):
 	db.close()
 	return genCode
 
+def getQuestion(roomId):
+	db = dbconn.dbcon()
+	cursor = db.cursor()
+
+	sql = """SELECT question FROM rooms WHERE roomId='"""+roomId+"""'"""
+	cursor.execute(sql)
+
+	results = cursor.fetchall()
+	return results
+
 def main():
 	#roomCode="123456"
 	#getQuestionsRoom(roomCode)	
+	#question = "This is a question"
+	#createRoom(question)
 	pass
 	#phoneNumber = "8970987890"
 	#roomCode = "testCode"
