@@ -20,10 +20,10 @@ def askQuestion(phoneNumber, roomCode, message):
 	try:
 		cursor.execute(sql)
 		db.commit()
-		print("Insert was fine")
+		return "Insert was fine"
 	except:
 		db.rollback()
-		print("Insert fucked")
+		return "Insert had an error"
 
 	db.close()	
 	return None
