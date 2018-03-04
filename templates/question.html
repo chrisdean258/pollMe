@@ -28,7 +28,7 @@ ajax = function()
           obj = JSON.parse(result);
           for(let i = num; i < obj.length; i++)
           {
-            document.getElementById("questionTable").innerHTML += "<tr><td>" + obj[i] + "</td></tr>";
+            document.getElementById("questions").innerHTML += "<section class='row'><h1>Question " + (i+1) + "</h1>" + obj[i] + "</section>";
           }
           num = obj.length;
         }
@@ -70,30 +70,11 @@ setInterval(ajax, 3000);
     </ul>
     </div>
 
-    <div class="cards">
-      <section class="row">
-        <h1>Question 1</h1>
-      </section>
-      <section class="row">
-        <h1>Question 2</h1>
-      </section>
-      <section class="row">
-        <h1>Question 3</h1>
-      </section>
-      <section class="row">
-        <h1>Question 4</h1>
-      </section>
-      <section class="row">
-        <h1>Question 5</h1>
-      </section>
-      <section class="row">
-        <h1>Question 6</h1>
-      </section>
-    </div>
+    <div id="questions" class="cards"> </div>
 
     <!--multistep form -->
-    <table id="questionTable">
-    </table>
+    <!--<table id="questionTable">-->
+    <!--</table>-->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/framaterial.min.js'></script>
