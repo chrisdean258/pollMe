@@ -27,8 +27,22 @@ def askQuestion(phoneNumber, roomCode, message):
 	db.close()
 	return None
 
+def getQuestionsRoom(roomCode):
+	db = dbconn.dbcon()
+	cursor = db.cursor()
+	roomCode = roomCode
+
+	sql = """SELECT * FROM ans WHERE roomId='"""+ roomCode+"""'"""
+	cursor.execute(sql)
+
+	results = cursor.fetchall()
+	return results
+
+
 def main():
-    pass
+	#roomCode="123456"
+	#getQuestionsRoom(roomCode)	
+	pass
 	#phoneNumber = "8970987890"
 	#roomCode = "testCode"
 	#message = "TEST MESSAGE"
