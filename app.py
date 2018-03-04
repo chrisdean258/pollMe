@@ -29,7 +29,8 @@ def register():
 
 @app.route('/receive_text', methods=['POST'])
 def receive_text():
-    print(request.values)
+    with open("log", "w") as f:
+        f.write(request.values)
     return ('', 204)
 
 if __name__ == '__main__':
