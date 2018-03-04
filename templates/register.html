@@ -7,9 +7,41 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="/register.css">
+    <link rel="stylesheet" href="menustyle.css">
   </head>
 
   <body>
+    <div id='cssmenu'>
+    <ul>
+       <li><a href='#'><span>PollMe</span></a></li>
+       <li class='active has-sub'><a href='#'><span>Classes</span></a>
+          <ul>
+             <li class='has-sub'><a href='#'><span>Class 0</span></a>
+                <ul>
+                   <li><a href='#'><span>Live</span></a></li>
+                   <li class='last'><a href='#'><span>History</span></a></li>
+                </ul>
+             </li>
+             <li class='has-sub'><a href='#'><span>Class 1</span></a>
+                <ul>
+                   <li><a href='#'><span>Live</span></a></li>
+                   <li class='last'><a href='#'><span>History</span></a></li>
+                </ul>
+             </li>
+             <li class='has-sub'><a href='#'><span>Class 2</span></a>
+                <ul>
+                   <li><a href='#'><span>Live</span></a></li>
+                   <li class='last'><a href='#'><span>History</span></a></li>
+                </ul>
+             </li>
+             <li class='has-sub'><a href='addclass'><span>Add Class</span></a></li>
+          </ul>
+       </li>
+       <li><a href='register'><span>Register</span></a></li>
+       <!--<li class='last'><a href='#'><span>Contact</span></a></li>-->
+    </ul>
+    </div>
+
     <!-- multistep form -->
     <form id="msform" action="{{url_for('register')}}" method="post">
       <!-- progressbar -->

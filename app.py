@@ -9,11 +9,14 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/addclass')
+def addclass():
+    return render_template("addclass.html")
+
 @app.route('/questions/<roomID>')
 def get_questions(roomID):
     questions = getQuestionsRoom(roomID)
     return ("", 204)
-
 
 @app.route('/room/<roomID>')
 def room(roomID):
