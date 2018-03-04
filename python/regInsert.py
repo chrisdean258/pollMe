@@ -70,6 +70,7 @@ def fromCode(phoneNumber, verCode):
 	return None
 
 def main():
+    pass
 	#phoneNumber = "TESTNUMBER HERE"
 	#fullName = "TESTNAME"
 	#verCode = "TESTVERCODE"

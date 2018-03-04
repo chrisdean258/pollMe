@@ -10,7 +10,7 @@ def askQuestion(phoneNumber, roomCode, message):
 	tempTime = datetime.datetime.now()
 	curDate = tempTime.strftime("%Y-%m-%d")
 	curTime = tempTime.strftime("%H:%M:%S")
-	
+
 	cursor = db.cursor()
 	phoneNumber = phoneNumber
 	roomCode = roomCode
@@ -24,10 +24,11 @@ def askQuestion(phoneNumber, roomCode, message):
 		db.rollback()
 		return "Insert had an error"
 
-	db.close()	
+	db.close()
 	return None
-		
+
 def main():
+    pass
 	#phoneNumber = "8970987890"
 	#roomCode = "testCode"
 	#message = "TEST MESSAGE"
