@@ -29,8 +29,8 @@ def register():
 
 @app.route('/receive_text', methods=['POST'])
 def receive_text():
-    with open("log", "w") as f:
-        f.write(str(request.values))
+    phoneNum = request.form['From']
+    msg = request.form['Body']
     return ('', 204)
 
 if __name__ == '__main__':
