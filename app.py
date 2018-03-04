@@ -1,10 +1,14 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect
+from flask import url_for
 from python.questionInsert import askQuestion
 from python.questionInsert import getQuestionsRoom
 from python.pollInsert import answerPoll
 from python.pollInsert import getAnswersRoom
+from python.roomInsert import createRoom
+from python.roomInsert import getQuestion
 import json
 app = Flask(__name__)
 
@@ -29,7 +33,16 @@ def room(roomID):
 
 @app.route('/<roomID>/poll')
 def poll(roomID):
-    return 'poll in room number %s' % roomID
+    q = json.loads(getQuestion(roomID)[0][0])
+
+    print(q)
+    return render_template("poll.html",
+            a = q["answerA"],
+            b = q["answerB"],
+            c = q["answerC"],
+            d = q["answerD"],
+            question = q["pollquestion"]
+    )
 
 @app.route('/<roomID>/poll/<pollID>')
 def pollID(roomID, pollID):
@@ -64,12 +77,13 @@ def receive_text():
 def static_(filename):
     return app.send_static_file(filename)
 
-@app.route('/addclass', methods=['POST', 'GET'])
-def addclass():
+@app.route('/addpoll', methods=['POST', 'GET'])
+def addpoll():
     if request.method == 'POST':
-        return "wrong one"
+        id_ = createRoom(json.dumps(request.form))
+        return redirect(url_for("poll", roomID=id_))
     else:
-        return render_template("addclass.html")
+        return render_template("addpoll.html")
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
