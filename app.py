@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from python.questionInsert import askQuestion
 from python.questionInsert import getQuestionsRoom
+from python.pollInsert import answerPoll
+from python.pollInsert import getAnswersRoom
 import json
 app = Flask(__name__)
 
@@ -17,7 +19,12 @@ def addclass():
 @app.route('/questions/<roomID>')
 def get_questions(roomID):
     questions = [q[5] for q in getQuestionsRoom(roomID)]
+    return json.dumps(questions)
 
+@app.route('/answers/<roomID>')
+def get_answers(roomID):
+    questions = getAnswersRoom(roomID)
+    print(str(questions))
     return json.dumps(questions)
 
 @app.route('/room/<roomID>')
@@ -53,12 +60,10 @@ def receive_text():
     phoneNum = request.form['From']
     msg = request.form['Body']
     if len(msg) == 9:
-        # Is an answer to a question
-        pass
+        answerPoll(phoneNum[2:], msg[1:7], '123456', msg[8])
     else:
-        askQuestion(phoneNum, msg[1:7], msg[8:])
-
-        return ('', 204)
+        askQuestion(phoneNum[2:], msg[1:7], msg[8:])
+    return ('', 204)
 
 @app.route('/<filename>')
 def static_(filename):

@@ -4,7 +4,7 @@ import pymysql as PyMySQL
 from . import dbconn
 import datetime
 
-def askQuestion(phoneNumber, roomCode, questionCode, message):
+def answerPoll(phoneNumber, roomCode, questionCode, message):
 	db = dbconn.dbcon()
 
 	tempTime = datetime.datetime.now()
@@ -28,12 +28,12 @@ def askQuestion(phoneNumber, roomCode, questionCode, message):
 	db.close()
 	return None
 
-def getQuestionsRoom(roomCode, questionCode):
+def getAnswersRoom(roomCode):
 	db = dbconn.dbcon()
 	cursor = db.cursor()
 	roomCode = roomCode
 
-	sql = """SELECT * FROM ans WHERE roomId='"""+ roomCode+"""' AND ansClassId='"""+ questionCode+"""'"""
+	sql = """SELECT * FROM ans WHERE roomId='"""+ roomCode+"""' AND ansClassId='123456'"""
 	cursor.execute(sql)
 
 	results = cursor.fetchall()
@@ -42,7 +42,7 @@ def getQuestionsRoom(roomCode, questionCode):
 
 def main():
 	#roomCode="123456"
-	#getQuestionsRoom(roomCode)	
+	#getQuestionsRoom(roomCode)
 	pass
 	#phoneNumber = "8970987890"
 	#roomCode = "testCode"
