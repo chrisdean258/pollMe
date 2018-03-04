@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import pymysql as PyMySQL
-import dbconn
+from . import dbconn
 import datetime
 
 def askQuestion(phoneNumber, roomCode, message):

@@ -2,11 +2,18 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from python.questionInsert import askQuestion
+from python.questionInsert import getQuestionsRoom
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template("index.html")
+
+@app.route('/questions/<roomID>')
+def get_questions(roomID):
+    questions = getQuestionsRoom(roomID)
+    return ("", 204)
+
 
 @app.route('/room/<roomID>')
 def room(roomID):
