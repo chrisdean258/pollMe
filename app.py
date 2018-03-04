@@ -7,6 +7,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/room/<roomID>')
+def room(roomID):
+    return 'room number %s' % roomID
+
 @app.route('/<roomID>/poll')
 def poll(roomID):
     return 'poll in room number %s' % roomID
@@ -36,6 +40,11 @@ def receive_text():
     phoneNum = request.form['From']
     msg = request.form['Body']
     return ('', 204)
+
+@app.route('/<filename>')
+def static_(filename):
+    return app.send_static_file(filename)
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
