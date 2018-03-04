@@ -28,7 +28,7 @@ ajax = function()
           obj = JSON.parse(result);
           for(let i = num; i < obj.length; i++)
           {
-            document.getElementById("questions").innerHTML += "<section class='row'><h1>Question " + (i+1) + "</h1>" + obj[i] + "</section>";
+            document.getElementById("questions").innerHTML = "<section class='row'><h1>Question " + (i+1) + "</h1>" + obj[i] + "</section>"+document.getElementById("questions").innerHTML;
           }
           num = obj.length;
         }
