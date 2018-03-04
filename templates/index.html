@@ -11,7 +11,7 @@
 function goToRoom()
 {
   let roomID = document.getElementById("roomInput").value;
-  window.location.load("/room/"+roomID);
+  window.location.href = "/room/"+roomID;
 }
     </script>
   </head>
@@ -20,7 +20,7 @@ function goToRoom()
     <!--multistep form -->
     <input value="Enter Room" type="submit" name="Enter Room" class="submit action-button" onclick="goToRoom();"/>
     <input id="roomInput" value="" type="text" name="Enter Room" class="submit action-button" />
-    <input value="Register" type="submit" name="register" class="submit action-button" onclick="window.location.load('{{url_for('register')}}')" />
+    <input value="Register" type="submit" name="register" class="submit action-button" onclick="window.location.href = '{{url_for('register')}}'" />
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
   </body>
